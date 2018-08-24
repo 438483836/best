@@ -1,0 +1,40 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" value="${item.id}" underline="true" readonly="readonly"/>
+                            <#input id="ip" name="IP" value="${item.ip}" underline="true"/>
+                            <#input id="port" name="端口" value="${item.port}" underline="true"/>
+                            <#input id="name" name="名称" value="${item.name}" underline="true"/>
+                            <#input id="remark" name="备注" value="${item.remark}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#select id="type" name="类型" value="${item.isUsed}" underline="true">
+                                <option value="1">分拣</option>
+                                <option value="2">补码</option>
+                            </#select>
+                            <#input id="typeName" name="类型名称" value="${item.typeName}" underline="true"/>
+                            <#select id="isUsed" name="是否启用" value="${item.isUsed}" underline="true">
+                                <option value="1">启用</option>
+                                <option value="0">禁用</option>
+                            </#select>
+                            <#input id="saveUser" name="修改人员" value="${shiro.getUser().name}" readonly="readonly"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PlcConfigInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PlcConfigInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/plcConfig/plcConfig_info.js"></script>
+@}

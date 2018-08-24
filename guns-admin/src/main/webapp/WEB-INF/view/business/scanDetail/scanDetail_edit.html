@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" value="${item.id}" underline="true"/>
+                            <#input id="sortId" name="唯一分拣id" value="${item.sortId}" underline="true"/>
+                            <#input id="trayCode" name="小车编号" value="${item.trayCode}" underline="true"/>
+                            <#input id="scanDatetime" name="扫描时间" value="${item.scanDatetime}" underline="true"/>
+                            <#input id="imgId" name="图片ID" value="${item.imgId}" underline="true"/>
+                            <#input id="barcode" name="条码" value="${item.barcode}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="sendDatetime" name="发送时间" value="${item.sendDatetime}" underline="true"/>
+                            <#input id="scanNo" name="扫描仪编号" value="${item.scanNo}" underline="true"/>
+                            <#input id="scanName" name="扫描仪名称" value="${item.scanName}" underline="true"/>
+                            <#input id="connDetailId" name="通讯详情ID" value="${item.connDetailId}" underline="true"/>
+                            <#input id="lchute" name="逻辑格口" value="${item.lchute}" underline="true"/>
+                            <#input id="weight" name="重量" value="${item.weight}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ScanDetailInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ScanDetailInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/scanDetail/scanDetail_info.js"></script>
+@}

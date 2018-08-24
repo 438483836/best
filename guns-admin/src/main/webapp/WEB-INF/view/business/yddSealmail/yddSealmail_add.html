@@ -1,0 +1,55 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="自动ID" underline="true"/>
+                            <#input id="bagid" name="清单ID" underline="true"/>
+                            <#input id="barcode" name="快件号码" underline="true"/>
+                            <#input id="mailid" name="快件ID" underline="true"/>
+                            <#input id="lchute" name="逻辑格口代码" underline="true"/>
+                            <#input id="chute" name="物理格口代码" underline="true"/>
+                            <#input id="sorttime" name="落格时间" underline="true"/>
+                            <#input id="inductionid" name="供件台号" underline="true"/>
+                            <#input id="weight" name="称重重量" underline="true"/>
+                            <#input id="length" name="长度" underline="true"/>
+                            <#input id="width" name="宽度" underline="true"/>
+                            <#input id="height" name="高度" underline="true"/>
+                            <#input id="volume" name="体积" underline="true"/>
+                            <#input id="dropflag" name="落格标志" underline="true"/>
+                            <#input id="checkflag" name="留盘检测确认标志"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="succesydlag" name="分拣成功与否标志" underline="true"/>
+                            <#input id="overflowid" name="异常原因代码" underline="true"/>
+                            <#input id="devicecode" name="设备编码" underline="true"/>
+                            <#input id="printflag" name="打印标志" underline="true"/>
+                            <#input id="printtime" name="请封时间" underline="true"/>
+                            <#input id="indtime" name="供件时间" underline="true"/>
+                            <#input id="indmode" name="供件模式" underline="true"/>
+                            <#input id="obrid" name="OBR编号" underline="true"/>
+                            <#input id="scantime" name="扫描时间" underline="true"/>
+                            <#input id="trayid" name="托盘号" underline="true"/>
+                            <#input id="delflag" name="删除标志" underline="true"/>
+                            <#input id="ocrflag" name="ADM处理标志" underline="true"/>
+                            <#input id="rejectflag" name="OBR拒识标志" underline="true"/>
+                            <#input id="sendflag" name="发送标志" underline="true"/>
+                            <#input id="sendtime" name="数据上传时间" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="YddSealmailInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="YddSealmailInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/yddSealmail/yddSealmail_info.js"></script>
+@}

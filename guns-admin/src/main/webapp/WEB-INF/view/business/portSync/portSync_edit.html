@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="belongSiteName" name="所属分拨" value="${item.belongSiteName}" underline="true"/>
+                            <#input id="pipeline" name="流水线号" value="${item.pipeline}" underline="true"/>
+                            <#input id="destSiteName" name="目的站点" value="${item.destSiteName}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="destSiteCode" name="目的站点编码" value="${item.destSiteCode}" underline="true"/>
+                            <#input id="destSortingCode" name="站点分拣编码" value="${item.destSortingCode}" underline="true"/>
+                            <#input id="sortPortCode" name="分拣口编号" value="${item.sortPortCode}" underline="true"/>
+                            <#input id="sortMode" name="分拣模式" value="${item.sortMode}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PortSyncInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PortSyncInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/portSync/portSync_info.js"></script>
+@}

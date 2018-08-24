@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.YddSealmailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.YddSealmail">
+        <id column="id" property="id" />
+        <result column="bagid" property="bagid" />
+        <result column="barcode" property="barcode" />
+        <result column="mailid" property="mailid" />
+        <result column="lchute" property="lchute" />
+        <result column="chute" property="chute" />
+        <result column="sorttime" property="sorttime" />
+        <result column="inductionid" property="inductionid" />
+        <result column="weight" property="weight" />
+        <result column="length" property="length" />
+        <result column="width" property="width" />
+        <result column="height" property="height" />
+        <result column="volume" property="volume" />
+        <result column="dropflag" property="dropflag" />
+        <result column="checkflag" property="checkflag" />
+        <result column="succesydlag" property="succesydlag" />
+        <result column="overflowid" property="overflowid" />
+        <result column="devicecode" property="devicecode" />
+        <result column="printflag" property="printflag" />
+        <result column="printtime" property="printtime" />
+        <result column="indtime" property="indtime" />
+        <result column="indmode" property="indmode" />
+        <result column="obrid" property="obrid" />
+        <result column="scantime" property="scantime" />
+        <result column="trayid" property="trayid" />
+        <result column="delflag" property="delflag" />
+        <result column="ocrflag" property="ocrflag" />
+        <result column="rejectflag" property="rejectflag" />
+        <result column="sendflag" property="sendflag" />
+        <result column="sendtime" property="sendtime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, bagid, barcode, mailid, lchute, chute, sorttime, inductionid, weight, length, width, height, volume, dropflag, checkflag, succesydlag, overflowid, devicecode, printflag, printtime, indtime, indmode, obrid, scantime, trayid, delflag, ocrflag, rejectflag, sendflag, sendtime
+    </sql>
+
+    <select id="getYddSealmails" resultType="map">
+
+        SELECT
+        id,
+        bagid,
+        barcode,
+        mailid,
+        lchute,
+        chute,
+        sorttime,
+        inductionid,
+        weight,
+        length,
+        width,
+        height,
+        volume,
+        dropflag,
+        checkflag,
+        succesydlag,
+        overflowid,
+        printflag,
+        printtime,
+        indtime,
+        indmode,
+        obrid,
+        scantime,
+        trayid,
+        delflag,
+        ocrflag,
+        rejectflag,
+        sendflag,
+        sendtime,
+        CASE devicecode
+        WHEN '1' THEN
+        '暴力分拣'
+        WHEN '2' THEN
+        '人工补码'
+        ELSE
+        '超时下架'
+        END 'devicecode',
+        lchute AS 'lchute'
+        FROM
+        tbl_ydd_sealmail where 1 = 1
+        <if test="barcode != null and barcode !=''">
+            and barcode like CONCAT('%',#{barcode},'%')
+        </if>
+        <if test="chute != null and chute !=''">
+            and chute = #{chute}
+        </if>
+        <if test="beginTime!=null and beginTime!=''">
+            and sorttime &gt;=  #{beginTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and sorttime &lt;=  #{endTime}
+        </if>
+        ORDER BY sorttime
+    </select>
+
+    <select id="getThroughputs" resultType="Integer">
+
+        SELECT
+        IFNULL(
+        (
+        SELECT
+        COUNT(chute)
+        FROM
+        tbl_ydd_sealmail
+        <where>
+            <if test="chute != null and chute !=''">
+                and chute = #{chute}
+            </if>
+            <if test="beginTime!=null and beginTime!=''">
+                and sorttime &gt;=  #{beginTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and sorttime &lt;=  #{endTime}
+            </if>
+        </where>
+
+        GROUP BY chute
+        ORDER BY chute
+        ),
+        0
+        ) AS total
+
+    </select>
+
+
+    <select id="getTimeoutExceptionSortCounts" resultType="Integer">
+
+        SELECT
+        COUNT(*) AS total
+        FROM
+        tbl_ydd_sealmail
+        <where>
+            barcode NOT IN ('')
+            AND chute IN ('195', '260')
+            AND lchute='3'
+            AND sendflag not in('','195|260')
+            <if test="beginTime!=null and beginTime!=''">
+                and sorttime &gt;=  #{beginTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and sorttime &lt;=  #{endTime}
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="getSupplyEfficiency" resultType="Integer">
+
+        SELECT
+        IFNULL(
+        (
+        SELECT
+        COUNT(inductionid)
+        FROM
+        tbl_ydd_sealmail
+        <where>
+            barcode NOT IN('')
+            <if test="inductionid != null and inductionid !=''">
+                and inductionid = #{inductionid}
+            </if>
+            <if test="beginTime!=null and beginTime!=''">
+                and sorttime &gt;=  #{beginTime}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and sorttime &lt;=  #{endTime}
+            </if>
+        </where>
+
+        GROUP BY inductionid
+        ORDER BY inductionid
+        ),
+        0
+        ) AS total
+
+    </select>
+
+</mapper>

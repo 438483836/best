@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.BillCodeDefinitionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.BillCodeDefinition">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="isList" property="isList" />
+        <result column="unitNumber" property="unitNumber" />
+        <result column="startChars" property="startChars" />
+        <result column="afterLength" property="afterLength" />
+        <result column="totalLength" property="totalLength" />
+        <result column="billTypeId" property="billTypeId" />
+        <result column="syncVersion" property="syncVersion" />
+        <result column="billTypeName" property="billTypeName" />
+        <result column="isEBill" property="isEBill" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, isList, unitNumber, startChars, afterLength, totalLength, billTypeId, syncVersion, billTypeName, isEBill
+    </sql>
+
+</mapper>

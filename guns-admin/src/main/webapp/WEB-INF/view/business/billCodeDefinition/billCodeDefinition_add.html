@@ -1,0 +1,37 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <!--<#input id="id" name="主键" underline="true"/>-->
+                            <#input id="code" name="面单种类编码" underline="true"/>
+                            <#input id="name" name="面单种类名称" underline="true"/>
+                            <#input id="isList" name="是否有明细" underline="true"/>
+                            <#input id="unitNumber" name="单位数目" underline="true"/>
+                            <#input id="startChars" name="开始字符"/>
+                            <#input id="afterLength" name="开始字符之后的字长度" underline="true"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="totalLength" name="面单字符总长度" underline="true"/>
+                            <#input id="billTypeId" name="面单类型 id" underline="true"/>
+                            <#input id="syncVersion" name="版本号" underline="true"/>
+                            <#input id="billTypeName" name="面单类型名称" underline="true"/>
+                            <#input id="isEBill" name="是否是电子面单" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="BillCodeDefinitionInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="BillCodeDefinitionInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/business/billCodeDefinition/billCodeDefinition_info.js"></script>
+@}

@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+
+<div class="col-sm-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>分拣效率趋势图</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <#TimeCon id="beginTime" name="开始时间" isTime="false" pattern="YYYY-MM-DD" required="required"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <#TimeCon id="endTime" name="结束时间" isTime="false" pattern="YYYY-MM-DD" required="required"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <#button type="submit" id="btn_submit" name="搜索" icon="fa-search"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                    <div id="psLine" style="height:500px;left:0px"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="${ctxPath}/static/modular/business/sortingEfficiency/sortingEfficiency.js"></script>
+<script src="${ctxPath}/static/js/plugins/echart/echarts.js"></script>
+@}

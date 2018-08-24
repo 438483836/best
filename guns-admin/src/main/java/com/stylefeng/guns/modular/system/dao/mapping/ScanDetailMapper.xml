@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.ScanDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.ScanDetail">
+        <id column="id" property="id" />
+        <result column="sort_id" property="sortId" />
+        <result column="tray_code" property="trayCode" />
+        <result column="scan_datetime" property="scanDatetime" />
+        <result column="img_id" property="imgId" />
+        <result column="barcode" property="barcode" />
+        <result column="send_datetime" property="sendDatetime" />
+        <result column="scan_no" property="scanNo" />
+        <result column="scan_name" property="scanName" />
+        <result column="conn_detail_id" property="connDetailId" />
+        <result column="lchute" property="lchute" />
+        <result column="weight" property="weight" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, sort_id, tray_code, scan_datetime, img_id, barcode, send_datetime, scan_no, scan_name, conn_detail_id, lchute, weight
+    </sql>
+
+    <select id="getScanDetails" resultType="map">
+
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        tbl_scan_detail where 1 = 1
+        <if test="barcode != null and barcode !=''">
+            and barcode like CONCAT('%',#{barcode},'%')
+        </if>
+        <if test="beginTime!=null and beginTime!=''">
+            and send_datetime &gt;=  #{beginTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and send_datetime &lt;=  #{endTime}
+        </if>
+        ORDER BY send_datetime
+    </select>
+</mapper>
